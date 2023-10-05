@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import css from './ImageGallery.module.css'
 
 export default class ImageGallery extends Component {
+
   render() {
     return (
        <ul className= {css.gallery}>
@@ -12,6 +13,7 @@ export default class ImageGallery extends Component {
               key={`${image.id}`}
               image={image.webformatURL}
               largeImage={image.largeImageURL}
+              onClick = {this.props.onClick}
             />
           )
         })}

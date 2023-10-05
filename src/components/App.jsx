@@ -25,8 +25,13 @@ export class App extends Component {
     try {
     this.setState({ isLoading: true })
     const picture = await fetchPictures(data);
-    this.setState({ images: picture.hits, page: 1,});
     
+      if (picture.hits.length === 0) {
+        alert('Pictures don`t finde. Try again')
+        return
+      }
+      
+      this.setState({ images: picture.hits, page: 1,});
   } catch (error) {
     this.setState ({error: error.message})
   } finally {
@@ -74,7 +79,8 @@ export class App extends Component {
     })
   }
 
-  onCloseModal = () => {
+  onCloseModal = (e) => {
+    if (e.currentTarget === e.target)
     this.setState({
       modal: {
         isOpen: false,
@@ -114,6 +120,7 @@ export class App extends Component {
         {this.state.modal.isOpen && <Modal
           image={ this.state.modal.image}
           largeImage={this.state.modal.largeImage}
+          onClick={this.onCloseModal}
         />}
 
     </div>

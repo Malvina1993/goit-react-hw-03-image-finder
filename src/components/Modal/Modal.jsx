@@ -4,10 +4,15 @@ export default class Modal extends Component {
   render() {
     return (
       <div>
-        <div className={css.overlay}>
+        <div
+          className={css.overlay}
+          onClick={(e) => {this.props.onClick(e)}}
+        >
           <div className={css.modal}>
-            <img src={this.props.image}  
+            <img
+              src={this.props.image}  
               alt={this.props.largeImage}
+              
             />
           </div>
         </div>
